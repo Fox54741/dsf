@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}
+Demo App
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='content-box.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='image-box.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='animations.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='components.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='flexslider.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='magnific-popup.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='contact-form.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='skin.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+{% block content %}
+<header class="fixed-top scroll-change bg-transparent menu-transparent" data-menu-anima="fade-bottom">
+   <div class="navbar navbar-default mega-menu-fullwidth navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-main">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle">
+               <i class="fa fa-bars"></i>
+               </button>
+               <a class="navbar-brand scroll-hide" href="{{ url_for('index') }}">
+                 SIZA 
+               </a>
+               <a class="navbar-brand scroll-show" href="{{ url_for('index') }}">
+                 SIZA
+               </a>
+            </div>
+            <div class="collapse navbar-collapse">
+               <div class="nav navbar-nav navbar-right">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('index') }}">首頁</a></li>
+                    <li><a href="{{ url_for('gallery') }}">會員紀錄</a></li>
+                    <li class="active"><a href="{{ url_for('term') }}">服務條款</a></li>
+                    <li><a href="{{ url_for('price') }}">報價</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ url_for('login') }}">登入</a></li>
+                   <!-- <li><a href="{{ url_for('signup') }}">Sign Up</a></li> -->
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</header>
+
+<div class="header-base" style="background-image:url({{url_for('.static', filename='bg1.jpg')}});">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="title-base text-left">
+                    <h1>「SIZA」服務條款</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="section-empty section-item">
+    <div class="container content style">
+        <div class="row">
+            <div class="col-md-12">
+              <h4>  1. 接受條款</h4>
+<p>以下為「SIZA」為訂戶提供的訂購服務之條款。所有訂戶必須遵守以下條款。而「SIZA」會於必要時更新條款內容。如訂戶並未同意遵守訂購條款，請勿進行訂 購登記。所有已付之費用將不會退還。</p>
+<h4>2. 服務簡介</h4>
+<p>訂購服務是指訂購瀏覽「SIZA」的服務。「SIZA」透過互聯網或其他電子工具將訂購服務傳送至訂戶。訂戶須確定接收訂購服務之電話線路、電腦硬件及其他裝置操作正常。</p>
+<h4>3. 訂戶責任</h4>
+<p>訂購服務只限付款訂戶使用，使用權不可轉交他人。要維持正常的訂購服務，訂戶必須︰</p>
+<p>(i) 依時繳交訂購費用；</p>
+<p>(ii) 訂購時提供正確及完整之個人資料；及</p>
+<p>(iii) 必要時更新個人資 料。</p>
+<p>若提供的資料有誤，「SIZA」有權終止對訂戶提供之服務。</p>
+<h4>4. 修改訂購條款</h4>
+<p>「SIZA」有權修改訂購條款，包括增加訂購費用等等。此類修改、增加或刪除條 款項目於「SIZA」或其他通訊公布時即時生效。當訂戶繼續使用「SIZA」服務時即代表訂戶接受該修訂。</p>
+<h4>5. 更改訂購服務</h4>
+<p>「SIZA」有權立即終止對任何訂戶所提供之訂購服務，事先無須以書面通知。訂 戶不得更改或終止訂購服務。</p>
+<h4>6. 免責聲明</h4>
+<p>請見下面部分</p>
+<h4>7. 不得轉讓訂購服務</h4>
+<p>訂購服務只限訂戶個人使用。訂戶單位必須為獨立人士，而非任何公司或團體。未得「SIZA」之許可，訂戶不得轉售訂購服務內容或作商業用途。</p>
+<h4>8. 訂戶操守</h4>
+<p>訂戶不得利用「SIZA」之內容作非法用途。訂戶需全部負責資訊傳送之過程。訂戶必須遵守本地及海外之法律，不得進行違法活動，在任何情況下引致觸犯所屬地區之法 律，訂戶須自行承擔責任，本網站恕不負責</p>
+<h4>9. 終止訂購</h4>
+<p>訂戶不得更改訂購服務。如訂戶並不同意任何經修改的訂購條款，請勿繼續使用訂購服務。而「SIZA」不會退還已付之訂購費用。</p>
+<h4>10. 消息通知</h4>
+<p>「SIZA」將以書面形式，透過電郵、Wechat、Line、Whatsapp傳統郵寄方式或透過SIZA」通知訂戶所有訂購消息。</p>
+<h4>11. 知識產權保障之內容</h4>
+<p>訂戶必須認明「SIZA」所提供之內容，包括︰文字、檔案、音樂、聲音檔案、相 片、影片、圖案或廣告內容只限訂戶於網上瀏覽，並受版權、商標、專利權或其他知識產 權法例保障。訂戶下載受知識產權保障之內容只限私人或非商業用途。訂戶必須保存完整 內容，未經「SIZA」同意下，不得翻印、複製、散播或製造由下載內容而衍生的 作品。</p>
+<h4>12. 法例</h4>
+<p>此訂購條款受台灣法例監管。</p>
+<h3>免責聲明</h3>
+<p>您明確了解並同意您使用「SIZA」的服務之風險是由您個人負擔。本資訊、產品 及服務是依「現況」及「現有」基礎提供。</p>
+<p>本網站「SIZA」提供之資料及其內容（包括指示條款）僅供參考，並不構成要約、招攬或邀請、宣傳、誘使，或任何不論種類或形式之表示、建議或推薦購買本網站所述的任何產品或計劃(不論按指示條款或其他方式)。</p>
+<p>本網站所載資料（包括任何意見或預測），取自相信為可靠之資料來源。然而，本網並無核實所有資料， 亦不表示有關資料對閣下所需用途而言乃屬準確或完整，故不應加以依賴。本公司並無責任更新資料或改正任何其後顯現之錯誤。本網站所載述的意見、預測及其他資料可予更改或撤回，恕不預早通知。</p>
+<p>本網站的內容並不打算向任何用戶提供購買本網站所述的任何產品或計劃，因此不應當作該等建議而予以 倚賴。任何披露記錄、披露或分析乃按本網作出之假設及參數而編製，並不構成本網之建議。</p>
+<p>本公司並不 保證任何此等記錄、披露或分析之準確性、完整性或合理性。並且不表示或保證所顯示之任何表現或回報 今後將能達致。過往表現並非未來回報之保證。本公司概不表示或保證任何資料均屬完整、可靠、準確、 具時效或適用於任何用途。</p>
+<p>「SIZA」及其聯屬網站或該等網站之擁有者、主管人員、僱員或代理對本網站或任何與本網站連結之 第三者網站所載資料的可靠性、完整性、時效性、準確性或適用性概不作任何表示或保證，而對任何人士因 此等資料之錯誤、錯述、遺漏或加以依賴而蒙受任何損失或損害（包括因疏忽理由），彼等概不負責或承擔 法律責任。</p>
+<p>「SIZA」及其聯屬網站或該等網站之擁有者、主管人員、僱員或代理並不就購買本網站所提述之產品 或計劃而產生之財務或任何其他後果承擔受信或其他任何責任。任何投注建議並未考慮個別投注者的特定投注目標及／或財政資源。</p>
+<p>投注者應自行運用獨立思考能力評估投注的相關適合性及風險，如認為需要， 於作出任何投注/購買行動前應諮詢本身之法律、財務及其他專業顧問。本網站提述之投注教學/推介/貼士/分析可輸亦可贏，在若干情況下，投注者可能損失其全部投注。</p>
+<p>過往表現並不預示末來表現。投注者應評估投資/投注此等產品涉及之風險，並諮詢其法律、財務、稅務、會計及其他專業顧問， 以確保作出適合其本身情況及財務狀況的投注決定。</p>
+<p>「SIZA」不保証所提供的資訊、產品及服務將符合您的要求，或該資訊、產品及服務及 其使用及取得之結果不受干擾、及時提供、正確、安全可靠或免於出錯。本網旨在以最快捷的 方式為公眾人士提供清楚準確的最新資料，但在整理資料及編寫程式時或會有無心之失，以及MLB/NBA/任何分析 根本沒有百分百準確無誤。</p>
+<p>故本網特此聲明，本網站所載的資料如有任何不確之處、貼士不準、遺漏或誤植錯字，並引致任何直接或間接的損失或虧損，本網概不負責，亦不會作出任何賠償(不論根據侵權法、合約或其他 規定亦然)。</p>
+<p>「SIZA」不保証經由或透過本網購買或取得之任何商品及服務之結果。「SIZA」不負責，亦不承擔任何一切因使用本網而引致之任何意外、錯誤、遺漏 、疏忽、干擾、經傳送或接收的錯誤、因下載而感染電腦病毒、誹謗、合約毀壞、版權或 知識產權侵犯及所造成的任何損失。</p>
+<p>本公司可隨時透過於本網站載列更新條款，以修訂此等條款及條件，但不承諾會定時更新此網站資料， 亦不會向閣下作出任何其 他形式的通知。</p>
+<p>「SIZA」及其聯屬網站或該等網站之擁有者、主管人員、僱員或代理概不就使用本網站而產生的任 何 直接、間接、特殊或其他損害而向任何人士承擔責任，即使已獲明確告知有機會或可能會出現該等損害亦然。</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+    </div><!-- /.container -->
+	<script src="{{url_for('.static', filename='imagesloaded.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='parallax.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.flexslider-min.js')}}"></script>
+	<script src="{{url_for('.static', filename='isotope.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='contact-form.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.progress-counter.js')}}"></script>
+	<script src="{{url_for('.static', filename='bootstrap.popover.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.magnific-popup.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='social.stream.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.slimscroll.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='smooth.scroll.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='script.js')}}"></script>
+{% endblock %}

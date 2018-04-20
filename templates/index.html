@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}
+Demo App
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='content-box.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='image-box.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='animations.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='components.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='flexslider.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='magnific-popup.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='contact-form.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='skin.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+{% block content %}
+<header class="fixed-top scroll-change bg-transparent menu-transparent" data-menu-anima="fade-bottom">
+   <div class="navbar navbar-default mega-menu-fullwidth navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-main">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle">
+               <i class="fa fa-bars"></i>
+               </button>
+               <a class="navbar-brand scroll-hide" href="{{ url_for('index') }}">
+                 SIZA 
+               </a>
+               <a class="navbar-brand scroll-show" href="{{ url_for('index') }}">
+                 SIZA
+               </a>
+            </div>
+            <div class="collapse navbar-collapse">
+               <div class="nav navbar-nav navbar-right">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="{{ url_for('index') }}">首頁</a></li>
+                    <li><a href="{{ url_for('gallery') }}">會員紀錄</a></li>
+                    <li><a href="{{ url_for('term') }}">服務條款</a></li>
+                    <li><a href="{{ url_for('price') }}">報價</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ url_for('login') }}">登入</a></li>
+                   <!-- <li><a href="{{ url_for('signup') }}">Sign Up</a></li> -->
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</header>
+
+	<div class="section-bg-image parallax-window text-center section-middle-img" data-natural-height="1080" data-natural-width="1920" data-parallax="scroll" data-image-src="{{url_for('.static', filename='bg1.jpg')}}">
+        <div class="container content">
+            <hr class="space" />
+            <h1 class="white">專業彩球分析系統</h1>
+            <p class="text-l text-center">專研六合彩投注經驗已有30年投資計畫。</p>
+            <hr class="space" />
+            <a href="{{ url_for('price') }}" class="circle-button btn btn-lg">馬上體驗</a>
+            <hr class="space" />
+            <div class="middle-img" data-anima="fade-bottom" data-anima-time="1000">
+                <img src="{{url_for('.static', filename='monitor2.jpg')}}" alt="" height="577" width="1140" />
+            </div>
+        </div>
+    </div>
+    <div class="section-empty">
+        <div class="container content">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="advs-box advs-box-top-icon" data-anima="scale-up" data-trigger="hover">
+                        <i class="fa fa-server icon circle anima"></i>
+                        <h3>強大數據庫</h3>
+                        <p>彩球投注經驗超過30年</p>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="advs-box advs-box-top-icon" data-anima="scale-up" data-trigger="hover">
+                        <i class="fa fa-users icon circle anima"></i>
+                        <h3>售後服務</h3>
+                        <p>教你如何用系統做投資工具，增加收入</p>
+
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="advs-box advs-box-top-icon" data-anima="scale-up" data-trigger="hover">
+                        <i class="fa fa-bar-chart icon circle anima"></i>
+                        <h3>專業分析</h3>
+                        <p>本團隊針對落球點每日球珠做分析</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-bg-image bg-top no-paddings-y" style="background-image: url(http://www.dreamsteptw.com/wp-content/themes/one/images/bg-gradient.png)">
+        <div class="container content">
+            <div class="row">
+                <div class="col-md-6">
+                    <hr class="space" />
+                    <hr class="space" />
+                    <h2>讓彩球投注變成真正的投資器具！</h2>
+                    <p>我們擁有最新科技，瑞士SIZA統計頂級設備，和一群來自矽谷統計學位計概學程菁英團隊，一直致力於研究保險理賠金等等大數據分析活動，近年來將技術移自此系統分析數據軟件， 通過最智能的人工數據軟件和最精良的軟件研發團隊在強大樣本數據中心的支持下， 為廣大用戶提供最科學最嚴謹的數據分析流程與分析方法， 減少投注的盲目性，確保勝率的穩定性和客觀性。</p>
+
+                    <p>您並非專職的統計學分析人士沒有辦法每天花十幾個小時，仔細研究版路...的狀況更遑論是利用程式做一些深入的數據分析以及數字在心理層面的陷阱此時不如信賴專業的解盤投資程式參考每日透過程式數據與人為計算分析您購買的是多位專家心血的結晶。讓您從賭客變成投資客。</p>
+
+                    <hr class="space m" />
+                    <hr class="space" />
+
+                </div>
+                <div class="col-md-4">
+                    <hr class="space hidden-xs" />
+                    <img class="abs-image" src="{{url_for('.static', filename='monitor.jpg')}}" alt="" />
+                    <hr class="space" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
+<footer class="footer-base">
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 footer-center text-center">
+                    <div class="tag-row">
+                        <span>© 2018 SIZA</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</footer>
+	<script src="{{url_for('.static', filename='imagesloaded.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='parallax.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.flexslider-min.js')}}"></script>
+	<script src="{{url_for('.static', filename='isotope.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='contact-form.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.progress-counter.js')}}"></script>
+	<script src="{{url_for('.static', filename='bootstrap.popover.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.magnific-popup.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='social.stream.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.slimscroll.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='smooth.scroll.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='script.js')}}"></script>
+{% endblock %}

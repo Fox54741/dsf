@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='content-box.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='image-box.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='animations.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='components.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='flexslider.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='magnific-popup.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='contact-form.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='skin.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='navbar-fixed-side.css')}}">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div  class="container-fluid">
+	<div class="row">
+		<div class="col-sm-4 col-lg-3">
+			<nav class="navbar navbar-default navbar-fixed-side">
+				<div class="container-fluid">
+					<div class="navbar-header">
+					  <a class="navbar-brand" href="#">SIZA</a>
+					</div>
+					<ul class="nav navbar-nav">
+					  <li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						功能列表
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						  <li><a href="#function#539Table" onclick="showAtRight('{{url_for('a539Table')}}')">彩球預測</a></li>
+						</ul>
+					  </li>
+					  
+					  <li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						會員管理
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						  <li><a href="#user#modify" onclick="showAtRight('{{url_for('modify')}}')">修改密碼</a></li>
+							<li><a href="{{ url_for('logout') }}">登出</a></li>
+						</ul>
+					  </li>
+					  {% if current_user.role == 999999 %}
+					  <li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						管理列表
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						    <li><a href="#manager#usermanager" onclick="showAtRight('{{url_for('usermanager')}}')">會員管理</a></li>
+							<li><a href="#manager#539TableC" onclick="showAtRight('{{url_for('a539TableC')}}')">彩球管理</a></li>
+                            <li><a href="#manager#Gallerymanager" onclick="showAtRight('{{url_for('Gallerymanager')}}')">紀錄管理</a></li>
+						</ul>
+					  </li>
+					  {% endif %}
+					</ul>
+				  </div>
+			</nav>
+		</div>
+		<div class="col-sm-8 col-lg-9">
+			<h1 class="page-header">
+				{{current_user.username}}, 你好
+			</h1>
+			<div id="content">
+				
+			</div> 
+		</div>
+	</div>
+</div>
+	<script src="{{url_for('.static', filename='imagesloaded.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='parallax.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.flexslider-min.js')}}"></script>
+	<script src="{{url_for('.static', filename='isotope.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='contact-form.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.progress-counter.js')}}"></script>
+	<script src="{{url_for('.static', filename='bootstrap.popover.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.magnific-popup.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='social.stream.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.slimscroll.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='smooth.scroll.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='script.js')}}"></script>
+	<script type="text/javascript">
+		//$(function() {
+			
+		//});
+		function showAtRight(url){
+			$.ajax({
+				type :"GET",
+				url : url,
+				dataType:"html",
+				success : function(data) {
+					$("#content").html(data);
+				},
+				error:function(){
+					$("#content").html("加載失敗!");
+				}
+			});
+		}
+		
+		setTimeout(function(){
+			{% if PCF %}
+				alert('建議先重設密碼!')
+			{% endif %}
+			showAtRight('{{url_for("a539Table")}}');
+		}, 1000);	
+	</script>
+{% endblock %}

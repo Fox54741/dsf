@@ -1,0 +1,109 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<div class="container">
+	<button type="button" class="btn btn-success input-lg" onclick="AutoCreate()">自動產生...</button>
+    <input id="checkBox" type="checkbox" onchange="CloseBoard()" {{ IsMainTain }}>關版</input>
+  <form id="form1" class="form-signin">
+	{{ wtf.form_field(form.serial) }}
+    <h1 style="color:red;" id="message">{{ msg }}</h1>
+    <h2 class="form-signin-heading">彩球管理</h2>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.a1) }}
+	{{ wtf.form_field(form.a2) }}
+	{{ wtf.form_field(form.a3) }}
+	{{ wtf.form_field(form.a4) }}
+	{{ wtf.form_field(form.a5) }}
+	{{ wtf.form_field(form.a6) }}
+	{{ wtf.form_field(form.a7) }}
+	{{ wtf.form_field(form.a8) }}
+	{{ wtf.form_field(form.a9) }}
+	{{ wtf.form_field(form.a10) }}
+	{{ wtf.form_field(form.a11) }}
+	{{ wtf.form_field(form.a12) }}
+	{{ wtf.form_field(form.a13) }}
+	{{ wtf.form_field(form.a14) }}
+	{{ wtf.form_field(form.a15) }}
+	{{ wtf.form_field(form.a16) }}
+	{{ wtf.form_field(form.a17) }}
+	{{ wtf.form_field(form.a18) }}
+	{{ wtf.form_field(form.a19) }}
+	{{ wtf.form_field(form.a20) }}
+	{{ wtf.form_field(form.a21) }}
+	{{ wtf.form_field(form.a22) }}
+	{{ wtf.form_field(form.a23) }}
+	{{ wtf.form_field(form.a24) }}
+	{{ wtf.form_field(form.a25) }}
+	{{ wtf.form_field(form.a26) }}
+	{{ wtf.form_field(form.a27) }}
+	{{ wtf.form_field(form.a28) }}
+	{{ wtf.form_field(form.a29) }}
+	{{ wtf.form_field(form.a30) }}
+	{{ wtf.form_field(form.a31) }}
+	{{ wtf.form_field(form.a32) }}
+	{{ wtf.form_field(form.a33) }}
+	{{ wtf.form_field(form.a34) }}
+	{{ wtf.form_field(form.a35) }}
+	{{ wtf.form_field(form.a36) }}
+	{{ wtf.form_field(form.a37) }}
+	{{ wtf.form_field(form.a38) }}
+	{{ wtf.form_field(form.a39) }}
+    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="mySubmit()">送出</button>
+  </form>
+</div> <!-- /container -->
+
+<script>
+	function mySubmit()
+	{
+		var form = $('#form1');
+		$.ajax({
+			url: "{{url_for('a539TableCC')}}", // form action url
+			type: 'POST', // form submit method get/post
+			dataType:"json",
+			data: form.serialize(), // serialize form data 
+			success : function(data) {
+				if(data.ok){
+					alert("修改完成!");
+				}
+				else{
+					$("#message").text('資料有誤，請重新輸入');
+					$('html, body').scrollTop(0);
+				}
+			},
+			error:function(){
+				alert('XX');
+			}
+		});
+		return false;
+	}
+	
+	function AutoCreate(){
+		var randomList = [];
+		var sum = 0;
+		for(var i = 0; i < 39; i++){
+			randomList.push(Math.random());
+			sum += randomList[i]
+		}
+		for(var i = 0; i < 39; i++){
+			var tar = i + 1;
+			$('#a' + tar.toString()).val(randomList[i]/sum * 500);
+		}
+	}
+	
+	function CloseBoard(){
+		$.ajax({
+			type :"POST",
+			url : "{{url_for('a539TableCheck')}}",
+			data: JSON.stringify({"checked": $("#checkBox").prop("checked")}),
+			contentType: 'application/json; charset=UTF-8',
+			success : function(data) {
+				if(data.ok){
+					$("#checkBox").prop("checked", data.reason);
+				}else{
+					alert(data.reason);
+				}
+			},
+			error:function(){
+				alert('XX');
+			}
+		});
+	}
+</script>

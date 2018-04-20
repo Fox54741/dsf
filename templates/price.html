@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}
+Demo App
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='content-box.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='image-box.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='animations.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='components.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='flexslider.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='magnific-popup.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='contact-form.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='skin.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+{% block content %}
+<header class="fixed-top scroll-change bg-transparent menu-transparent" data-menu-anima="fade-bottom">
+   <div class="navbar navbar-default mega-menu-fullwidth navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-main">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle">
+               <i class="fa fa-bars"></i>
+               </button>
+               <a class="navbar-brand scroll-hide" href="{{ url_for('index') }}">
+                 SIZA 
+               </a>
+               <a class="navbar-brand scroll-show" href="{{ url_for('index') }}">
+                 SIZA
+               </a>
+            </div>
+            <div class="collapse navbar-collapse">
+               <div class="nav navbar-nav navbar-right">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('index') }}">首頁</a></li>
+                    <li><a href="{{ url_for('gallery') }}">會員紀錄</a></li>
+                    <li><a href="{{ url_for('term') }}">服務條款</a></li>
+                    <li class="active"><a href="{{ url_for('price') }}">報價</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ url_for('login') }}">登入</a></li>
+                   <!-- <li><a href="{{ url_for('signup') }}">Sign Up</a></li> -->
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</header>
+
+	<div class="header-base" style="background-image:url({{url_for('.static', filename='bg1.jpg')}});">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="title-base text-left">
+						<h1>收費報價</h1>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<div class="section-empty section-item">
+    <div class="container content">
+        <div class="row">
+			<div class="list-group pricing-table">
+			  <div class="list-group-item pricing-name">
+				<h3>系統永久使用 -- NT$. 52,000（原價）</h3>
+			  </div>
+			  <div class="list-group-item pricing-price">
+				<span>NT$.</span>26,000 <span></span>
+			  </div>
+
+
+				<div class="list-group-item pricing-btn">
+					<a class="btn btn-sm btn-default" href="https://line.me/R/ti/p/%40ndl7228e">  購買請加LINE </a>
+				</div>
+			</div>
+            <hr class="space m">
+            <div class="col-md-12">
+              <p>如需要購買或了解更多，請加LINE 官方ID @ndl7228e</p>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+</div><!-- /.container -->
+	<script src="{{url_for('.static', filename='imagesloaded.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='parallax.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.flexslider-min.js')}}"></script>
+	<script src="{{url_for('.static', filename='isotope.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='contact-form.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.progress-counter.js')}}"></script>
+	<script src="{{url_for('.static', filename='bootstrap.popover.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.magnific-popup.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='social.stream.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='jquery.slimscroll.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='smooth.scroll.min.js')}}"></script>
+	<script src="{{url_for('.static', filename='script.js')}}"></script>
+{% endblock %}

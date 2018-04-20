@@ -1,0 +1,154 @@
+<script src="{{url_for('.static', filename='circle-progress.min.js')}}"></script>
+<style>
+.table-rwd{}
+
+tr.tr-only-hide {
+	color: #D20B2A;
+}
+
+.progress {
+	margin-bottom: 0 !important;
+}
+
+@media (max-width: 736px) {
+	.table-rwd{min-width: 100%;}
+	tr.tr-only-hide {
+		display: none !important;
+	}
+	.table-rwd tr{
+		display: block;
+		border: 1px solid #ddd;
+		margin-top: 5px;
+	}
+	.table-rwd td {
+		text-align: left;
+		font-size: 15px;
+		overflow: hidden;
+		width: 100%;
+		display: block;
+	}
+	.table-rwd td:before {
+		content: attr(data-th) " : ";
+		display: inline-block;
+		text-transform: uppercase;
+		font-weight: bold;
+		margin-right: 10px;
+		color: #D20B2A;
+	}
+	.table-rwd.table-bordered td,.table-rwd.table-bordered th,.table-rwd.table-bordered{
+		border:0;
+	}
+}
+
+.circles {
+  margin-bottom: -10px;
+}
+
+.circle {
+  width: 100px;
+  margin: 6px 6px 20px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.circle canvas {
+  vertical-align: top;
+}
+
+.circle strong {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 30px;
+}
+
+.circle strong i {
+  font-style: normal;
+  font-size: 0.6em;
+  font-weight: normal;
+}
+
+.circle span {
+  display: block;
+  color: #aaa;
+  margin-top: 12px;
+}
+
+</style>
+
+<div class="list-group pricing-table">
+  <div class="list-group-item pricing-price">
+	<center><span>期號:</span>{{serial}}<span></span></center>
+  </div>
+</div>
+
+<div class="col">
+  <div class="col-sm-4">
+	<div class="second circle" id="N1">
+      <strong></strong>
+      <span>{{res[0][0]}}號</span>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="second circle" id="N2">
+      <strong></strong>
+      <span>{{res[1][0]}}號</span>
+    </div>
+  </div>
+  <div class="col-sm-4">
+	<div class="second circle" id="N3">
+      <strong></strong>
+      <span>{{res[2][0]}}號</span>
+    </div>
+  </div> 
+</div> 
+
+<table class="table table-striped table-bordered table-rwd">
+　<tr class="tr-only-hide">
+　　<th>序號</th>
+　　<th>機率</th>
+　</tr>
+{% for r in res %}
+　<tr>
+　　<td data-th="序號">{{r[0]}}</td>
+　　<td data-th="機率">
+      <div class="progress progress-striped active">
+         <div class="progress-bar progress-bar-success" style="width:0%"></div>{{ "%.2f"|format(r[1])}}%
+      </div>
+   </td>
+　</tr>
+{% endfor %}
+</table>
+
+<script type="text/javascript">
+	$( ".progress-bar" ).each(function( index ) {
+		$( this ).animate({
+			width: $( this ).parent()[0].childNodes[2].data.split("\n")[0]
+		}, 500);
+		//$( this ).parent()[0].childNodes[2].data
+		// console.log( index + ":" + $( this ).parent()[0].childNodes[2].data.split("\n")[0] );
+	});
+	
+	$('#N1').circleProgress({
+		value: {{res[0][1]}} / 100
+	}).on('circle-animation-progress', function(event, progress) {
+		$(this).find('strong').html(Math.round({{res[0][1]}} * progress) + '<i>%</i>');
+	});
+	
+	$('#N2').circleProgress({
+		value: {{res[1][1]}} / 100
+	}).on('circle-animation-progress', function(event, progress) {
+		$(this).find('strong').html(Math.round({{res[1][1]}} * progress) + '<i>%</i>');
+	});
+	
+	$('#N3').circleProgress({
+		value: {{res[2][1]}} / 100
+	}).on('circle-animation-progress', function(event, progress) {
+		$(this).find('strong').html(Math.round({{res[2][1]}} * progress) + '<i>%</i>');
+	});
+</script>

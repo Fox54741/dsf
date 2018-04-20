@@ -1,0 +1,39 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<div class="container">
+
+  <form id="form1" class="form-signin">
+    <h1 style="color:red;" id="message">{{ msg }}</h1>
+    <h2 class="form-signin-heading">修改密碼</h2>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.oldPass) }}
+    {{ wtf.form_field(form.newPass) }}
+	{{ wtf.form_field(form.confirm) }}
+    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="mySubmit()">送出</button>
+  </form>
+</div> <!-- /container -->
+
+<script>
+	function mySubmit()
+	{
+		var form = $('#form1');
+		$.ajax({
+			url: "{{url_for('modifyC')}}", // form action url
+			type: 'POST', // form submit method get/post
+			dataType:"json",
+			data: form.serialize(), // serialize form data 
+			success : function(data) {
+				if(data.ok){
+					alert("修改完成，請重新登入!");
+					window.location.replace("{{url_for('index')}}");
+				}
+				else{
+					$("#message").text('資料有誤，請重新輸入');
+				}
+			},
+			error:function(){
+				alert('XX');
+			}
+		});
+		return false;
+	}
+</script>

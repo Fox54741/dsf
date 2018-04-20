@@ -1,0 +1,120 @@
+<div class="panel">
+   <div class="panel-body">
+      <h4 class="m-b-30 m-t-0">會員管理</h4>
+	  <div class="col-sm-6">
+		<input class="form-control input-lg" id="newUserName" type="text">
+	  </div>
+	  <div class="col-sm-6">
+		<button type="button" class="btn btn-success input-lg" onclick="AddUser()">新增</button>
+	  </div>
+      <div id="usercontent">
+       </div>
+      <div class="row">
+         <div class="col-xs-12">
+            <div class="table-responsive">
+               <table class="table table-hover m-b-0">
+                  <thead>
+                     <tr>
+                        <th>會員帳號</th>
+                        <th>操作</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+				    {% for user in users %}
+						<tr>
+							<td>{{user.username}}</td>
+							<td>
+								<button type="button" class="btn btn-warning" onclick="ResetUser({{user.id}})">重置</button>
+								<button type="button" class="btn btn-danger" onclick="DelUser({{user.id}})">刪除</button>
+							</td>
+						</tr>
+                    {% endfor %}
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script type="text/javascript">
+	function reFresh(){
+		$.ajax({
+			type :"GET",
+			url : "{{url_for('usermanager')}}",
+			dataType:"html",
+			success : function(data) {
+				$("#content").html(data);
+			},
+			error:function(){
+				$("#content").html("加載失敗!");
+			}
+		});
+        $('html, body').scrollTop(0);
+	}
+
+	function DelUser(id){
+		$.ajax({
+			type :"POST",
+			url : "{{url_for('DelUser')}}",
+			data: JSON.stringify({"id": id}),
+			contentType: 'application/json; charset=UTF-8',
+			success : function(data) {
+				if(data.ok){
+					alert(data.reason);
+					reFresh();
+				}else{
+					$("#usercontent").html(data.reason);
+                    $('html, body').scrollTop(0);
+				}
+			},
+			error:function(){
+				$("#usercontent").html("加載失敗!");
+                $('html, body').scrollTop(0);
+			}
+		});
+	}
+	
+	function AddUser(){
+		$.ajax({
+			type :"POST",
+			url : "{{url_for('AddUser')}}",
+			data: JSON.stringify({"username": $('#newUserName').val()}),
+			contentType: 'application/json; charset=UTF-8',
+			success : function(data) {
+				if(data.ok){
+					alert(data.reason);
+					reFresh();
+				}else{
+					$("#usercontent").html(data.reason);
+                    $('html, body').scrollTop(0);
+				}
+			},
+			error:function(){
+				$("#usercontent").html("加載失敗!");
+			}
+		});
+	}
+	
+	function ResetUser(id){
+		$.ajax({
+			type :"POST",
+			url : "{{url_for('ResetUser')}}",
+			data: JSON.stringify({"id": id}),
+			contentType: 'application/json; charset=UTF-8',
+			success : function(data) {
+				if(data.ok){
+					alert(data.reason);
+					reFresh();
+				}else{
+					$("#usercontent").html(data.reason);
+                    $('html, body').scrollTop(0);
+				}
+			},
+			error:function(){
+				$("#usercontent").html("加載失敗!");
+                $('html, body').scrollTop(0);
+			}
+		});
+	}
+</script>

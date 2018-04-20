@@ -1,0 +1,108 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<div class="panel">
+   <div class="panel-body">
+      <h4 class="m-b-30 m-t-0">紀錄管理</h4>
+        <h1 style="color:red;" id="message">{{ msg }}</h1>
+       <div class="list-group pricing-table">
+          <form id="form1" method="POST" enctype="multipart/form-data" action="javascript:;">
+            <h1 style="color:red;">{{ msg }}</h1>
+            <h2 class="form-signin-heading">新增紀錄</h2> 
+            {{ form.hidden_tag() }}
+            {{ wtf.form_field(form.serial) }}
+            {{ wtf.form_field(form.image) }}
+            <button class="btn btn-lg btn-primary btn-block" type="button" onclick="mySubmit()">新增</button>
+          </form>
+        </div>
+      <div class="row">
+         <div class="col-xs-12">
+            <div class="table-responsive">
+               <table class="table table-hover m-b-0">
+                  <thead>
+                     <tr>
+                        <th>期數</th>
+                        <th>操作</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+				    {% for gallery in gallerys %}
+						<tr>
+							<td>{{gallery.serial}}</td>
+							<td>
+								<button type="button" class="btn btn-danger" onclick="DelGallery({{gallery.id}})">刪除</button>
+							</td>
+						</tr>
+                    {% endfor %}
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script type="text/javascript">
+    function reFresh(){
+		$.ajax({
+			type :"GET",
+			url : "{{url_for('Gallerymanager')}}",
+			dataType:"html",
+			success : function(data) {
+				$("#content").html(data);
+			},
+			error:function(){
+				$("#content").html("加載失敗!");
+			}
+		});
+        $('html, body').scrollTop(0);
+	}
+    
+    function DelGallery(id){
+		$.ajax({
+			type :"POST",
+			url : "{{url_for('DelGallery')}}",
+			data: JSON.stringify({"id": id}),
+			contentType: 'application/json; charset=UTF-8',
+			success : function(data) {
+				if(data.ok){
+					alert(data.reason);
+					reFresh();
+				}else{
+					$("#usercontent").html(data.reason);
+                    $('html, body').scrollTop(0);
+				}
+			},
+			error:function(){
+				$("#usercontent").html("加載失敗!");
+                $('html, body').scrollTop(0);
+			}
+		});
+	}
+    
+	function mySubmit()
+	{
+		var form = $('#form1');
+        var formData = new FormData(form[0]);
+		$.ajax({
+			url: "{{url_for('AddGallery')}}", // form action url
+			type: 'POST', // form submit method get/post
+			dataType:"json",
+			data: formData, // serialize form data 
+            contentType: false,
+            processData: false,
+			success : function(data) {
+				if(data.ok){
+					alert("新增完成!");
+                    reFresh();
+				}
+				else{
+					$("#message").text('資料有誤，請重新輸入');
+					$('#message').scrollTop(0);
+				}
+			},
+			error:function(){
+				alert('XX');
+			}
+		});
+		return false;
+	}
+</script>
