@@ -47,14 +47,16 @@ Dashboard
 							<li><a href="{{ url_for('logout') }}">登出</a></li>
 						</ul>
 					  </li>
-					  {% if current_user.role == 999999 %}
+					  {% if current_user.role > 499 %}
 					  <li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						管理列表
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-						    <li><a href="#manager#usermanager" onclick="showAtRight('{{url_for('usermanager')}}')">會員管理</a></li>
-							<li><a href="#manager#539TableC" onclick="showAtRight('{{url_for('a539TableC')}}')">彩球管理</a></li>
+                            {% if current_user.role == 999999 %}
+                                <li><a href="#manager#usermanager" onclick="showAtRight('{{url_for('usermanager')}}')">會員管理</a></li>
+							{% endif %}
+                            <li><a href="#manager#539TableC" onclick="showAtRight('{{url_for('a539TableC')}}')">彩球管理</a></li>
                             <li><a href="#manager#Gallerymanager" onclick="showAtRight('{{url_for('Gallerymanager')}}')">紀錄管理</a></li>
 						</ul>
 					  </li>

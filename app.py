@@ -306,7 +306,7 @@ def a539Table():
 @app.route('/manager/539TableCheck', methods=['GET', 'POST'])
 @login_required
 def a539TableCheck():
-    if current_user.role == 999999:
+    if current_user.role > 499:
         data = request.get_json()
         checked = data.get('checked')
         global IsMainTain
@@ -320,7 +320,7 @@ def a539TableCheck():
 @login_required
 def a539TableC():
     global IsMainTain
-    if current_user.role == 999999:
+    if current_user.role > 499:
         form = A539Form()
         m=""
         if IsMainTain:
@@ -331,7 +331,7 @@ def a539TableC():
 @app.route('/manager/539TableCC', methods=['GET', 'POST'])
 @login_required
 def a539TableCC():
-    if current_user.role == 999999:
+    if current_user.role > 499:
         form = A539Form()
         if form.validate_on_submit():
             new_record = Record(
@@ -419,7 +419,14 @@ def AddUser():
         if user:
             return jsonify({'ok': False, 'reason': '重複使用者'})
         hashed_password = generate_password_hash("12345678", method='sha256')
-        new_user = User(username=username, password=hashed_password, role=1)
+        
+        isAdm = data.get('isAdm')
+        print(isAdm)
+        role = 1
+        if isAdm:
+            role=500
+            
+        new_user = User(username=username, password=hashed_password, role=role)
         if new_user:
             db.session.add(new_user)
             db.session.commit()
@@ -453,7 +460,7 @@ def GalleryImage(id, w, h):
 @app.route('/manager/Gallerymanager', methods=['GET', 'POST'])
 @login_required
 def Gallerymanager():
-    if current_user.role == 999999:
+    if current_user.role > 499:
         gallerys = Gallery.query.order_by(Gallery.id.desc()).limit(9).all()
         form = AddGalleryForm()
         return render_template('Gallerymanager.html', gallerys=gallerys, form=form)
@@ -463,7 +470,7 @@ def Gallerymanager():
 @app.route('/manager/AddGallery', methods=['POST'])
 @login_required
 def AddGallery():
-    if current_user.role == 999999:
+    if current_user.role > 499:
         form = AddGalleryForm()
         if form.validate_on_submit():
             newGallery = Gallery(
@@ -481,7 +488,7 @@ def AddGallery():
 @app.route('/manager/DelGallery', methods=['POST'])
 @login_required
 def DelGallery():
-    if current_user.role == 999999:
+    if current_user.role > 499:
         data = request.get_json()
         gallery = Gallery.query.filter_by(id=data.get('id')).first()
         if gallery:

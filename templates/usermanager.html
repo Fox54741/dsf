@@ -3,6 +3,7 @@
       <h4 class="m-b-30 m-t-0">會員管理</h4>
 	  <div class="col-sm-6">
 		<input class="form-control input-lg" id="newUserName" type="text">
+         <input id="isAdm" type="checkbox">是否為管理員</input>
 	  </div>
 	  <div class="col-sm-6">
 		<button type="button" class="btn btn-success input-lg" onclick="AddUser()">新增</button>
@@ -79,7 +80,7 @@
 		$.ajax({
 			type :"POST",
 			url : "{{url_for('AddUser')}}",
-			data: JSON.stringify({"username": $('#newUserName').val()}),
+			data: JSON.stringify({"username": $('#newUserName').val(), "isAdm": $('#isAdm').is(':checked')}),
 			contentType: 'application/json; charset=UTF-8',
 			success : function(data) {
 				if(data.ok){
